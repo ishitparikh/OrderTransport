@@ -10,8 +10,6 @@ namespace OrderTransport
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             var serviceProvider = new ServiceCollection()
             .AddSingleton<IFlightService, FlightService>()
             .AddSingleton<IOrderService, OrderService>()
@@ -20,6 +18,7 @@ namespace OrderTransport
             var flightService = serviceProvider.GetService<IFlightService>();
             var orderService = serviceProvider.GetService <IOrderService>();
 
+            // Get Flights
             var flights = flightService.GetFlights();
             Console.WriteLine("Flight list:");
             foreach(FlightViewModel vm in flights)
@@ -27,6 +26,7 @@ namespace OrderTransport
                 Console.WriteLine("Flight: " + vm.FlightNumber + ", departure: " + vm.DepartureCity + ", arrival: " + vm.ArrivalCity + ", day: " + vm.Day);
             }
 
+            // Get order schedule as per flight availability for arrival city
             var ordersSchedule = orderService.GetOrderSchedule();
             Console.WriteLine();
             Console.WriteLine("Order Schedule:");

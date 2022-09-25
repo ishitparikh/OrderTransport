@@ -10,9 +10,4 @@ namespace OrderTransport.Models
         public string OrderNumber { get; set; }
         public string ArrivalCity { get; set; }
     }
-
-    public class DestinationModel
-    {
-        public ArrivalCityEnum Destination { get; set; }
-    }
 }
